@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('tittle');
             $table->string('content');
             $table->string('image');
-            $table->foreignId('authors_id')->references('id')->on('authors');
+            $table->foreignId('author_id')->references('id')->on('authors')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

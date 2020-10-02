@@ -53,7 +53,7 @@ class PostController extends Controller
                 'tittle' => 'required|string',
                 'content' => 'required|string',
                 'image' => 'required|string',
-                'authors_id' => 'required|numeric'
+                'author_id' => 'required|numeric'
             ])
         );
         return $this->getValidations();
@@ -68,7 +68,7 @@ class PostController extends Controller
     {
         $per_page = $request->per_page == null ? 10 : $request->per_page;
         $post = new Post();
-        $result = $post->Search($request->filter)->with(['authors'])->simplePaginate($per_page)->toArray();
+        $result = $post->Search($request->filter)->with(['author'])->simplePaginate($per_page)->toArray();
         $result['total'] = count($post->Search($request->filter)->get());
 
         for ($i = 0; $i < count($result['data']); $i++) {
@@ -129,7 +129,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::whereId($id)->with('authors')->first();
+        $post = Post::whereId($id)->with('author')->first();
         $post['image'] =  url(\Storage::url($post['image']));
         return $post;
     }

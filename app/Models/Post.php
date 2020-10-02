@@ -16,12 +16,12 @@ class Post extends Model
         'tittle',
         'content',
         'image',
-        'authors_id'
+        'author_id'
     ];
 
     protected $dates = ['deleted_at'];
 
-    public function authors()
+    public function author()
     {
         return $this->belongsTo(Author::class);
     }
