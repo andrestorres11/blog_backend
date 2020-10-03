@@ -98,9 +98,7 @@ class AuthorController extends Controller
 
         $author = Author::create($request->input('author'));
 
-        return response()->json([
-            'Se inserto el autor De manera correcta' => $author,
-        ], 200);
+        return response()->json(true);
 
     }
 
@@ -143,9 +141,7 @@ class AuthorController extends Controller
 
         $author = Author::whereId($id)->update($request->input('author'));
         
-        return response()->json([
-            'Se actualizo el autor De manera correcta' => $author,
-        ], 200);
+        return response()->json(true);
     }
 
     /**
@@ -158,7 +154,7 @@ class AuthorController extends Controller
     {
         Author::whereId($id)->delete();
         return response()->json([
-            'Se elimino de manera correcta el autor',
+            true,
         ], 200);
     }
 }

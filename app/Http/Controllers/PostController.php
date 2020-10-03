@@ -115,9 +115,7 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        return response()->json([
-            'Se inserto el post De manera correcta' => $post,
-        ], 200);
+        return response()->json(true);
 
     }
 
@@ -171,9 +169,7 @@ class PostController extends Controller
         $data['image'] = $img_name;
         $post = Post::whereId($id)->update($data);
         
-        return response()->json([
-            'Se actualizo el post De manera correcta' => $post,
-        ], 200);
+        return response()->json(true);
     }
 
     /**
@@ -185,6 +181,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         Post::whereId($id)->delete();
+        return response()->json([
+            true,
+        ], 200);
     }
 
     public function getB64Image($base64_image){  
